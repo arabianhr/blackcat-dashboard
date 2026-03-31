@@ -1,0 +1,18 @@
+services:
+  dashboard:
+    build: .
+    container_name: blackcat_dashboard
+    restart: unless-stopped
+    ports:
+      - "3100:3000"
+    networks:
+      - blackcat_dmz
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=production
+
+networks:
+  blackcat_dmz:
+    external: true
+    name: blackcat_dmz
